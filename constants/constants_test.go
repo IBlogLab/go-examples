@@ -9,7 +9,7 @@ import (
 // 声明常量
 const s string = "constant"
 
-func TestConstants(t *testing.T) {
+func TestConstant(t *testing.T) {
 	fmt.Println(s)
 
 	const n = 500000000

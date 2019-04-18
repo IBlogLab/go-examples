@@ -32,8 +32,8 @@ func TestRateLimiting(t *testing.T) {
 		}
 	}()
 
-	burstyRequests := make(chan int, 100)
-	for i := 1; i <= 100; i++ {
+	burstyRequests := make(chan int, 10)
+	for i := 1; i <= 10; i++ {
 		burstyRequests <- i
 	}
 	close(burstyRequests)

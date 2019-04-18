@@ -25,14 +25,15 @@ func TestRateLimiting(t *testing.T) {
 	for i := 0; i < 3; i++ {
 		burstyLimiter <- time.Now()
 	}
+	// 间隔2秒向burstyLimiter新值
 	go func() {
-		for t := range time.Tick(200 * time.Millisecond) {
+		for t := range time.Tick(2000 * time.Millisecond) {
 			burstyLimiter <- t
 		}
 	}()
 
-	burstyRequests := make(chan int, 5)
-	for i := 1; i <= 5; i++ {
+	burstyRequests := make(chan int, 100)
+	for i := 1; i <= 100; i++ {
 		burstyRequests <- i
 	}
 	close(burstyRequests)
